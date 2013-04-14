@@ -1,0 +1,5 @@
+content	autolinkzotero				content/
+locale	autolinkzotero	en-US		locale/en-US/
+skin	autolinkzotero	default		skin/default/
+
+overlay	chrome://zotero/content/zoteroPane.xul	chrome://autolinkzotero/content/overlay.xul

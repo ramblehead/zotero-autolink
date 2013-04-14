@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://autolinkzotero/skin/overlay.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://autolinkzotero/locale/autolink.dtd">
+
+<overlay id="autolinkzotero-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="autolink-zotero-strings"
+                  src="chrome://autolinkzotero/locale/autolink.properties"/>
+  </stringbundleset>
+  
+  <menupopup id="zotero-tb-actions-popup">
+    <!-- Make sure the menu separator for utilities is visible -->
+    <menuseparator id="zotero-tb-actions-plugins-separator" hidden="false"/>
+    <menu insertbefore="zotero-tb-actions-separator" label="Autolink">
+      <menupopup id="zotero-autolink-plugin-actions-popup">
+        <menuitem insertbefore="zotero-tb-actions-separator"
+                  label="Base URL..."
+                  oncommand="Zotero.Autolink.editBaseURLOnClick()"/>
+        <!-- TODO: Show warning about Zotero syncronization problem -->
+        <menuitem insertbefore="zotero-tb-actions-separator"
+                  label="Add Autolinks to All Stored Copies of Files"
+                  oncommand="Zotero.Autolink.addAutolinksToAll();"/>
+        <menuitem insertbefore="zotero-tb-actions-separator"
+                  label="Remove All Autolinks"
+                  oncommand="Zotero.Autolink.removeAutolinksFromAll();"/>
+      </menupopup>
+    </menu>
+  </menupopup>
+
+  <!-- <toolbarbutton id="zotero-tb-attachment-add" hidden="false"> -->
+  <!--   <menupopup> -->
+  <!--     <menuitem id="zotero-autolink-tb-attach-file-menuitem" -->
+  <!--               class="menuitem-iconic zotero-menuitem-attachments-file" -->
+  <!--               position="4" -->
+  <!--               label="Attach Stored Copy of File with Autolink..." -->
+  <!--               oncommand="Zotero.Autolink.attachFileOnClick();"/> -->
+  <!--   </menupopup> -->
+  <!-- </toolbarbutton> -->
+
+  <menupopup id="zotero-itemmenu" onpopupshowing="Zotero.Autolink.extendItemContextMenu();">
+    <menuitem id="zotero-autolink-edit-url-menuitem" label="Edit URL" oncommand="Zotero.Autolink.editURLOnClick();"/>
+  </menupopup>
+
+  <!-- insertbefore="zotero-tb-actions-separator" -->
+  <!-- oncommand="var itemID = parseInt(this.parentNode.parentNode.parentNode.getAttribute('itemID')); ZoteroPane_Local.addAttachmentFromDialog(false, itemID);" -->
+  <menupopup id="zotero-add-attachment-popup">
+    <menuitem id="attach-file-autolink-menuitem"
+              class="menuitem-iconic zotero-menuitem-attachments-file"
+              position="4"
+              label="Attach Stored Copy of File with Autolink..."
+              oncommand="Zotero.Autolink.attachFileOnClick();"/>
+  </menupopup>
+
+  <!-- Include the main extension logic -->
+  <script src="chrome://zotero/content/include.js"/>
+  <script src="chrome://autolinkzotero/content/include.js"/>
+  <script src="no-add-id-workaround.js"/>
+</overlay>
